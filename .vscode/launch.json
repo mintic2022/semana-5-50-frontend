@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Grupo50 Front",
+        "args": ["dev"],
+        "osx": {
+          "program": "${workspaceFolder}/node_modules/.bin/nuxt"
+        },
+        "linux": {
+          "program": "${workspaceFolder}/node_modules/.bin/nuxt"
+        },
+        "windows": {
+          "program": "${workspaceFolder}/node_modules/nuxt/bin/nuxt.js"
+        },
+        "env": {
+          "NODE_ENV": "develop",
+          "PORT":"4000",
+          "HOST":"localhost",
+          "BACKEND_SERVER":"localhost",
+          "BACKEND_PORT":"3000"
+        }
+      }
+    ]
+}
