@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  middleware: 'auth',
   data: () => ({
     cards: 
     [[{"Objetivos": "Enfocar nuestro quehacer en la solución de problemas asociados a los retos en los procesos de contrataión de las organizaciones. Crear vínculos académicos con comunidades y otros grupos de investigación relacionados con el área. Gestionar recursos de presupuesto nacional el internacional para la investigación y la innovación."}], 

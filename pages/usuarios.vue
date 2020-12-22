@@ -119,7 +119,9 @@
 <script>
 
 export default {  
+  middleware: 'auth',
   data: () => ({
+    
     headers: [
       {
         text: "Id",

@@ -1,27 +1,43 @@
 <template>
-  <div>
-    <v-app-bar
-      color="primary accent-4"
-      dense
-      dark
-    >
-     <!-- <v-img src="../assets/img/unticket_logo-main.png"  min-height="40" min-width="110" ></v-img>-->
-      <v-icon left>mdi-ticket-account</v-icon>
-      <v-toolbar-title></v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <div class="mx-1">
-        <span>Logout</span>
-      <v-btn icon>
-        <v-icon >mdi-forward</v-icon>
-      </v-btn>
+  <nav class="navbar is-light">
+    <div class="container">
+      <div class="navbar-brand">
+        <nuxt-link class="navbar-item" to="/">Nuxt Auth</nuxt-link>
+        <button class="button navbar-burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-    </v-app-bar>
-  </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              My Account
+            </a>
+            <div class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/profile">My Profile</nuxt-link>
+              <hr class="navbar-divider"/>
+              <a class="navbar-item" @click="logout">Logout</a>
+            </div>
+          </div>
+          <template>
+            <nuxt-link class="navbar-item" to="/register">Register</nuxt-link>
+            <nuxt-link class="navbar-item" to="/login">Log In</nuxt-link>
+          </template>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
+
 <script>
 export default {
-    name:'Navbar'
+
+  methods: {
+    async logout() {
+      await this.$auth.logout();
+    } , 
+},
 }
 </script>

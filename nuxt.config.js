@@ -20,6 +20,11 @@ module.exports = {
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: 'images/favicon.ico' },
+            {
+                rel: 'stylesheet',
+                href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
+            },
+
 
         ],
         script: [],
@@ -65,6 +70,7 @@ module.exports = {
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
+        '@nuxtjs/auth'
     ],
     /*
      ** Axios module configuration
@@ -73,6 +79,27 @@ module.exports = {
     axios: {
         baseURL: `http://${process.env.BACKEND_SERVER}:${process.env.BACKEND_PORT}/api`,
     },
+
+    auth: {
+        strategies: {
+          local: {
+            endpoints: {
+              login: { url: '/usuario/login', method: 'post' , propertyName: 'tokenReturn'},
+              user: { url: '/usuario/list', method: 'get', propertyName: 'data' },
+              logout: false
+            }
+          },
+        },
+        redirect: {
+            login: '/',
+            logout: '/login',
+            user: '/profile',
+            callback:'/'
+        }
+      },
+
+      
+
     /*
      ** vuetify module configuration
      ** https://github.com/nuxt-community/vuetify-module
