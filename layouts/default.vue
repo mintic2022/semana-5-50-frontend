@@ -1,10 +1,14 @@
 <template >
+
   <v-app>
     
+    
     <v-container pa-6 fluid>
+      <navbar />
       <v-card fluid>
         <v-row>
           <v-col cols="2" sm="2" md="2" lg="2" xl="2">
+              
             
               <NavigationBar />        
              
@@ -38,13 +42,15 @@
 import Carousel from "@/components/Carousel";
 import NavigationBar from "@/components/NavigationBar";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 export default {
   name: "default",
   components: {
     Carousel,
     Footer,
-    NavigationBar    
+    NavigationBar,
+    Navbar   
   }  
 };
 </script>

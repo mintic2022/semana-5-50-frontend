@@ -9,6 +9,14 @@
         :loading ="loader"
          loading-text="Loading... Please wait"
       >
+      <template v-slot:item.estado="{ item }">
+        <v-chip
+          :color="getColor(item.estado)"
+          dark
+        >
+          {{ item.estado }}
+        </v-chip>
+      </template>
         <template v-slot:top>
           <v-toolbar flat>
             <v-toolbar-title>Usuarios</v-toolbar-title>
@@ -119,7 +127,9 @@
 <script>
 
 export default {  
+  middleware: ['auth'],
   data: () => ({
+    
     headers: [
       {
         text: "Id",
@@ -163,7 +173,7 @@ export default {
       id: 0,
       nombre: "",
       rol: "",
-      estado: "",
+      estado: 0,
       email: "", 
       password: ""
           
@@ -172,7 +182,7 @@ export default {
       id: 0,
       nombre: "",
       rol: "",
-      estado: "",
+      estado: 0,
       email: "", 
       password: ""
           
@@ -189,6 +199,10 @@ export default {
     this.initialize();
   },
   methods: {
+    getColor (estado) {
+        if (estado == 1) return 'blue'        
+        else return 'red'
+    },
     async initialize() {
       let usuario = await this.getusuario();
       this.desserts = usuario;
@@ -206,18 +220,18 @@ export default {
         this.dialog = false;
       });
     },
-    nameFilter(value) {
-      // If this filter has no value we just skip the entire filter.
-      if (!this.dessertFilterValue) {
-        return true;
-      }
+    // nameFilter(value) {
+    //   // If this filter has no value we just skip the entire filter.
+    //   if (!this.dessertFilterValue) {
+    //     return true;
+    //   }
 
-      // Check if the current loop value (The dessert name)
-      // partially contains the searched word.
-      return value
-        .toLowerCase()
-        .includes(this.dessertFilterValue.toLowerCase());
-    },
+    //   // Check if the current loop value (The dessert name)
+    //   // partially contains the searched word.
+    //   return value
+    //     .toLowerCase()
+    //     .includes(this.dessertFilterValue.toLowerCase());
+    // },
 
     linesFilter(value) {
       // If this filter has no value we just skip the entire filter.

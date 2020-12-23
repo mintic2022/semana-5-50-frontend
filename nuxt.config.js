@@ -20,6 +20,11 @@ module.exports = {
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: 'images/favicon.ico' },
+            {
+                rel: 'stylesheet',
+                href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
+            },
+
 
         ],
         script: [],
@@ -35,7 +40,7 @@ module.exports = {
         '@static/css/frontend.css',
         '@static/css/bootstrap.min.css',
         '@static/css/bootstrap-theme.min.css',
-        '@static/css/reset.css',        
+        '@static/css/reset.css',
         '@static/css/base.css',
         '@static/css/tablet.css',
         '@static/css/phone.css',
@@ -51,7 +56,9 @@ module.exports = {
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: ['~/plugins/vuelidate'],
+    plugins: [
+        '~/plugins/vuelidate'        
+    ],
     /*
      ** Nuxt.js dev-modules
      */
@@ -65,7 +72,13 @@ module.exports = {
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
+        '@nuxtjs/auth',
+        '@nuxtjs/toast',
     ],
+    toast: {
+        position: 'top-right',
+        duration: 2000
+    },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
@@ -73,6 +86,34 @@ module.exports = {
     axios: {
         baseURL: `http://${process.env.BACKEND_SERVER}:${process.env.BACKEND_PORT}/api`,
     },
+
+    auth: {
+        strategies: {
+            local: {
+                endpoints: {
+                    login: { url: '/usuario/login', method: 'post', propertyName: 'token' },
+                    user: { url: '/usuario/user', method: 'get', propertyName: 'user' },
+                    logout: false,
+                    tokenRequired: true,
+                    tokenType: 'Bearer',
+                }
+            },
+        },
+        redirect: {
+            login: '/login',
+            logout: '/login',
+            user: '/myprofile',
+            callback: '/'
+        }
+    },
+
+    loading: {
+        name: 'chasing-dots',
+        color: '#ff5638',
+        background: 'white',
+        height: '4px'
+     },
+
     /*
      ** vuetify module configuration
      ** https://github.com/nuxt-community/vuetify-module

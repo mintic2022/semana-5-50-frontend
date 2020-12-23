@@ -4,7 +4,9 @@
     <v-navigation-drawer
       v-model="drawer"      
       permanent
+      v-if="isAuthenticated"
     >
+      
       <v-list-item class="px-2">
         <v-list-item-avatar>
           <v-img src="images/logo.png" contain></v-img>
@@ -35,6 +37,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+   
     </v-navigation-drawer>
     
  
@@ -42,15 +45,21 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
   export default {
+    computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+  },
     data () {
       return {
         drawer: true,
-        items: [          
-        { title: "Inicio", icon: "mdi-home", link: "inicio" },
+        items: [                
+        { title: "Inicio", icon: "mdi-home", link: "/" },
+         { title: "Perfil", icon: "mdi-account", link: "profile" },   
         { title: "Servicios", icon: "mdi-pencil", link: "servicios" },
         { title: "Categorías", icon: "mdi-group", link: "categorias" },         
-        { title: "Usuarios", icon: "mdi-account-multiple", link: "usuarios" },
+        { title: "Usuarios", icon: "mdi-account-multiple", link: "usuarios" }
+        
         ],
         mini: true,
       }
